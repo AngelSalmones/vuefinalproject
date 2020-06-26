@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <div class="container">
-      <h1>Shopping</h1>
+      <h1>Tienda</h1>
     </div>
     <NotificationBanner/>
     <div class="container">
-      <h2>Products:</h2>
+      <h2>Productos:</h2>
       <main id="main-content" v-bind:class="(basketItems.length) ? 'has-basket' : ''">
         <ProductListing 
           v-bind:products="products"

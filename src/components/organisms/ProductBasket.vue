@@ -3,18 +3,18 @@
     <div class="basket-toggle">
       <button 
         class="btn is-primary"
-        v-on:click="toggleBasket">Basket</button>
+        v-on:click="toggleBasket">Carrito</button>
     </div>
     <div rel="basketContent" class="product-basket-content">
       <ul class="list-unstyled product-list">
         <li v-for="(item, index) in basketItems" v-bind:key="index + item.id">
           <p><b>{{ item.name }}</b> x {{ item.quantityInBasket }}</p>
           <p>total: {{ item.quantityInBasket * item.price - item.discount | currency }}</p>
-          <button class="btn is-danger" v-on:click="removeToBasket(item.id)">Remove Item</button>
+          <button class="btn is-danger" v-on:click="removeToBasket(item.id)">Quitar producto</button>
         </li>
       </ul>
       <div class="voucher-bar">
-        <label for="voucher"><b>Voucher: </b></label>
+        <label for="voucher"><b>Cupon: </b></label>
         <input 
           v-model="voucherInput" 
           type="text" 
@@ -23,12 +23,12 @@
           class="btn is-primary"
           v-bind:disabled="voucherInput === ''"
           v-on:click="submitVoucher()">
-          Submit
+          Aceptar
         </button>
       </div>
       <p class="has-bg-danger-light has-py-2 has-px-3" v-if="voucherErrorMsg">{{ voucherErrorMsg }}</p>
       <div v-if="voucherDiscount > 0">
-        <p><b>Discount: </b>{{ voucherDiscount | currency }}</p>
+        <p><b>Descuento: </b>{{ voucherDiscount | currency }}</p>
         <p>
           <b>Total: 
             <del>{{ total | currency }}</del> | 
@@ -36,7 +36,7 @@
         </p>
       </div>
       <p v-else><b>Total: {{ total | currency }}</b></p> 
-      <button class="btn is-gradient">Checkout</button>
+      <button class="btn is-gradient">Pago</button>
     </div>
   </section>
 </template>
@@ -78,7 +78,7 @@ export default {
             this.voucherErrorMsg = "";
           } else {
             this.voucherDiscount = 0;
-            this.voucherErrorMsg = "You need to spend over £50.00 to use this voucher";
+            this.voucherErrorMsg = "You need to spend over $50.00 to use this voucher";
           }
           break;
         case "15offOver75Footwear": {
@@ -88,13 +88,13 @@ export default {
             this.voucherErrorMsg = "";
           } else if (this.total < 75 && footwareItem.length) {
             this.voucherDiscount = 0;
-            this.voucherErrorMsg = "You need to spend over £75.00 to use this voucher";
+            this.voucherErrorMsg = "You need to spend over $75.00 to use this voucher";
           } else if (this.total >= 75 && footwareItem.length === 0){
             this.voucherDiscount = 0;
             this.voucherErrorMsg = "You need at least one footwear item to use this voucher";
           } else {
             this.voucherDiscount = 0;
-            this.voucherErrorMsg = "You need at least one footwear item and to spend over £75.00, to use this voucher";
+            this.voucherErrorMsg = "You need at least one footwear item and to spend over $75.00, to use this voucher";
           }
           break;
         }

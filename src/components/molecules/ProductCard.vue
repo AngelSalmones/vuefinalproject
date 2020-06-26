@@ -4,13 +4,13 @@
     <p class="category">{{ product.category }}</p>
     <p v-if="product.discount === 0"><b>{{ product.price | currency }}</b></p>
     <p v-else><b><del>{{ product.price | currency }}</del> | {{ product.price - product.discount | currency }}</b></p>
-    <p v-if="product.quantityInStock > 0">Quantity left: {{ product.quantityInStock }}</p>
-    <p v-else class="has-bg-danger-light has-py-2 has-px-3">Out of stock</p>
+    <p v-if="product.quantityInStock > 0">Cantidad en Stock: {{ product.quantityInStock }}</p>
+    <p v-else class="has-bg-danger-light has-py-2 has-px-3">No disponible</p>
     <button 
       class="btn is-gradient"
       v-bind:disabled="product.quantityInStock === 0"
       v-on:click="addToBasket(index)">
-      Add to basket
+      Añadir al Carrito
     </button>
   </li>
 </template>
